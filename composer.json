@@ -31,7 +31,7 @@
             "src/System/Support/helpers.php"
         ],
         "psr-0": {
-            "Illuminate": "src/"
+            "System": "src/"
         }
     },
     "extra": {

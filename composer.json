@@ -1,0 +1,46 @@
+{
+    "name": "yuyiphp/framework",
+    "description": "The YuYiPHP Framework.",
+    "keywords": ["yuyiphp", "framework"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "QIXIEYU",
+            "email": "826740687@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0"
+    },
+    "replace": {
+        "System/support": "self.version",
+        "System/symfony": "self.version",
+        "System/Config": "self.version",
+        "System/Exception": "self.version",
+        "System/Filesystem": "self.version",
+        "System/Foundation": "self.version",
+        "System/Http": "self.version",
+        "System/Log": "self.version",
+        "System/Routing": "self.version"
+    },
+    "require-dev": {
+
+    },
+    "autoload": {
+        "files": [
+            "src/System/Support/helpers.php"
+        ],
+        "psr-0": {
+            "Illuminate": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.1-dev"
+        }
+    },
+    "suggest": {
+
+    },
+    "minimum-stability": "dev"
+}

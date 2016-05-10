@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="content-type:text/html;charset=utf-8"/>
+    <title>Debug Panal</title>
+    <style>
+        body, div, h4, p {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        div {
+            border: 1px solid gray;
+        }
+
+        h4 {
+            font-weight: normal;
+            color: red;
+            background-color: #eee;
+            height: 40px;
+            line-height: 40px;
+            padding-left: 10px;
+            border-bottom: 1px solid gray;
+            overflow: hidden;
+        }
+
+        p {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h4>[<?php echo $title;?>]: <?php echo $msg;?></h4>
+    <?php
+        if($file){
+            echo "<p>文件:{$file}</p>";
+        }
+        if($line){
+            echo "<p>行号:第{$line}行</p>";
+        }
+    ?>
+    <p>信息:<?php echo $msg;?></p>
+</div>
+</body>
+</html>

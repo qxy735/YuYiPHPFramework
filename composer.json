@@ -21,7 +21,8 @@
         "System/Foundation": "self.version",
         "System/Http": "self.version",
         "System/Log": "self.version",
-        "System/Routing": "self.version"
+        "System/Routing": "self.version",
+        "System/Database": "self.version"
     },
     "require-dev": {
 

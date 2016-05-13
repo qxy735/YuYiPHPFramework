@@ -8,6 +8,7 @@
  */
 
 use \Smarty;
+use System\Support\Facades\Config;
 
 class Controller extends Smarty
 {
@@ -37,5 +38,29 @@ class Controller extends Smarty
     public function display($path = '')
     {
         parent::display($path);
+    }
+
+    /**
+     * 操作成功跳转提示
+     *
+     * @param string $message
+     * @param string $url
+     * @param int    $time
+     */
+    protected function success($message = '', $url = '', $time = 3)
+    {
+        include Config::get('config.tpl_file_path') . '/' . Config::get('config.success_tpl_file');exit;
+    }
+
+    /**
+     * 操作失败跳转提示
+     *
+     * @param string $message
+     * @param string $url
+     * @param int    $time
+     */
+    protected function error($message = '', $url = '', $time = 3)
+    {
+        include Config::get('config.tpl_file_path') . '/' . Config::get('config.error_tpl_file');exit;
     }
 }

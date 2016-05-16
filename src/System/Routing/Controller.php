@@ -26,8 +26,28 @@ class Controller extends Smarty
         // 设置模板编译文件目录
         $this->setCompileDir(storage_path() . '/compile');
 
+        // 设置模板引擎配置
+        $this->setTemplateConfig();
+        
         // 初始化模板引擎
         parent::__construct();
+    }
+
+    /**
+     * 设置模板引擎配置
+     */
+    protected function setTemplateConfig()
+    {
+        // 获取配置信息
+        $config = Config::get('config');
+
+        // 设置模版使用分隔符号
+        $this->left_delimiter = $config['left_delimiter'];
+        $this->right_delimiter = $config['right_delimiter'];
+
+        // 设置模版缓存信息
+        $this->caching = $config['cache_start'];
+        $this->cache_lifetime = $config['cache_life_time'];
     }
 
     /**

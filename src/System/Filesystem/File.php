@@ -175,7 +175,7 @@ class File
 
         return $return;
     }
-    
+
     /**
      * 文件载入
      *

@@ -224,6 +224,7 @@ class Application extends Container
             'router' => 'System\Routing\Router',
             'log' => 'System\Log\Writer',
             'redirect' => 'System\Routing\Redirect',
+            'session' => 'System\Http\Session',
         );
 
         foreach ($aliases as $key => $alias) {

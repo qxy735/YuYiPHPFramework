@@ -104,4 +104,139 @@ class Request extends SymfonyRequest
 
         return $pathInfo;
     }
+
+    /**
+     * 获取所有请求参数
+     *
+     * @return array
+     */
+    public function all()
+    {
+        return array_merge_recursive($this->input(), $this->files->all());
+    }
+
+    /**
+     * 请求参数是否存在
+     *
+     * @param $key
+     *
+     * @return bool
+     */
+    public function has($key)
+    {
+        $keys = is_array($key) ? $key : func_get_args();
+
+        foreach ($keys as $value) {
+            if ($this->isEmptyString($value)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * 是否为空字符串
+     *
+     * @param  string $key
+     *
+     * @return bool
+     */
+    protected function isEmptyString($key)
+    {
+        $boolOrArray = is_bool($this->input($key)) || is_array($this->input($key));
+
+        return !$boolOrArray && trim((string)$this->input($key)) === '';
+    }
+
+    /**
+     * 获取输入的参数数据
+     *
+     * @param null $key
+     * @param null $default
+     *
+     * @return mixed
+     */
+    public function input($key = null, $default = null)
+    {
+        $input = $this->getInputSource()->all() + $this->query->all();
+
+        return array_get($input, $key, $default);
+    }
+
+    /**
+     * 获取输入的资源
+     *
+     * @return \Symfony\Component\HttpFoundation\ParameterBag
+     */
+    protected function getInputSource()
+    {
+        if ($this->isJson()) {
+            return $this->json();
+        }
+
+        return $this->getMethod() == 'GET' ? $this->query : $this->request;
+    }
+
+    /**
+     * 是否为 Json 格式
+     *
+     * @return bool
+     */
+    public function isJson()
+    {
+        return str_contains($this->header('CONTENT_TYPE'), '/json');
+    }
+
+    /**
+     * 获取 Json 数据
+     *
+     * @param null $key
+     * @param null $default
+     *
+     * @return mixed|ParameterBag
+     */
+    public function json($key = null, $default = null)
+    {
+        if (!isset($this->json)) {
+            $this->json = new ParameterBag((array)json_decode($this->getContent(), true));
+        }
+
+        if (is_null($key)) {
+            return $this->json;
+        }
+
+        return array_get($this->json->all(), $key, $default);
+    }
+
+    /**
+     * 获取头部信息
+     *
+     * @param null $key
+     * @param null $default
+     *
+     * @return mixed
+     */
+    public function header($key = null, $default = null)
+    {
+        return $this->retrieveItem('headers', $key, $default);
+    }
+
+    /**
+     * 获取数据
+     *
+     * @param $source
+     * @param $key
+     * @param $default
+     *
+     * @return mixed
+     */
+    protected function retrieveItem($source, $key, $default)
+    {
+        if (is_null($key)) {
+            return $this->$source->all();
+        } else {
+            return $this->$source->get($key, $default, true);
+        }
+    }
 }

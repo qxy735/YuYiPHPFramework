@@ -225,6 +225,7 @@ class Application extends Container
             'log' => 'System\Log\Writer',
             'redirect' => 'System\Routing\Redirect',
             'session' => 'System\Http\Session',
+            'image' => 'System\Filesystem\Image',
         );
 
         foreach ($aliases as $key => $alias) {

@@ -37,6 +37,11 @@ $config = $application['config']['config'];
 // 设置时区
 date_default_timezone_set($config['timezone']);
 
+// 开启 session
+if ($config['session_start']) {
+    session_start();
+}
+
 // 获取外部应用类别名
 $aliases = $config['aliases'];
 

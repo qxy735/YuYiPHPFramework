@@ -8,6 +8,7 @@
  */
 
 use System\Support\Facades\Config;
+use System\Symfony\Component\HttpFoundation\ParameterBag;
 use System\Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 
 class Request extends SymfonyRequest

@@ -88,7 +88,7 @@ class Controller extends Smarty
     public function display($path = '')
     {
         $this->assign('__RESOURCE__', RESOURCE_URL);
-        
+
         parent::display($path);
     }
 

@@ -39,6 +39,10 @@ class Connection
      */
     public function __construct($name)
     {
+        if ('default' === $name) {
+            $name = Config::get('database.default');
+        }
+
         // 获取数据库链接配置信息
         $this->config = Config::get("database.{$name}") ? : array();
     }

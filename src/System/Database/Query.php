@@ -87,7 +87,7 @@ class Query
      *
      * @return null|string
      */
-    private function dealFieldType($value = null)
+    public function dealFieldType($value = null)
     {
         return is_string($value) ? ("'" . $value . "' ") : $value;
     }
@@ -99,7 +99,7 @@ class Query
      *
      * @return string
      */
-    private function getWhereInString($params = '')
+    public function getWhereInString($params = '')
     {
         if (is_array($params)) {
             $result = '';

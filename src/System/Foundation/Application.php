@@ -252,6 +252,9 @@ class Application extends Container
             'storage/logs',
             'storage/compile',
             'storage/cache',
+            'assets/css',
+            'assets/js',
+            'assets/image',
         );
 
         foreach ($directories as $directorie) {
